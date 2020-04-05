@@ -20,11 +20,13 @@
 Feature: Register Container (Actor: Client) 
 
 	Scenario: Successful registration of a container
-    Given Port of origin "Stockholm"
-    And Destination "Copenhagen"
-    And Client "NETTO"
-    And Content "Milk"
-    And Container in-port"Stockholm" and "CON-1"
+    Given A new port of origin "Stockholm"
+    And A List of all valid ports ["Stockholm", "Copenhagen"] which is in the system
+    And A new destination "Copenhagen"
+    And A client with client ID "CLI-12345678" which is in the system
+    And "Milk" as content of the container
+    And A container in-port "Stockholm" and with container ID "CON-11111111"
+    And The status of the container is "not in route"
 	  When Registering a container
     Then Change container status to "in-route"
 
