@@ -1,6 +1,9 @@
-package user;
+package backend.user;
 
-public class Person {
+import backend.objects.PersonEmail;
+import backend.objects.PersonName;
+
+class Person {
 	
 	private PersonName name;
 	private PersonEmail email;

@@ -1,8 +1,13 @@
-package user;
+package backend.user;
 
+import backend.database.DatabaseObjects;
+import backend.objects.CompanyAddress;
+import backend.objects.CompanyName;
+import backend.objects.PersonEmail;
+import backend.objects.PersonName;
+import backend.objects.SearchAbleObjects;
 
-
-public interface User extends SearchAbleObjects {
+public interface User extends SearchAbleObjects, DatabaseObjects {
 	
 	Person getContactperson();
 	void setContactperson(Person contactperson);
@@ -11,7 +16,7 @@ public interface User extends SearchAbleObjects {
 	CompanyAddress getCompanyAddress();
 	void setCompanyAddress(CompanyAddress companyaddress);
 	
-	String getId();	
+	String get();	
 	
 	String getContactPersonNameString();
 	void setContactPersonNameString(String name);
@@ -25,7 +30,6 @@ public interface User extends SearchAbleObjects {
 	
 	SearchAbleObjects universelGet(SearchAbleObjects anotherSearchAbleUserObjects);
 	
-	boolean equal(User anotheruser);
 	void setCompanyAddressString(String companyaddress);
 	String getCompanyAddressString();
 	

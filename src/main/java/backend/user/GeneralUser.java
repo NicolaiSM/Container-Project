@@ -1,4 +1,12 @@
-package user;
+package backend.user;
+
+import backend.objects.CompanyAddress;
+import backend.objects.CompanyName;
+import backend.objects.ID;
+import backend.objects.PersonEmail;
+import backend.objects.PersonName;
+import backend.objects.SearchAbleObjects;
+import backend.objects.clientID;
 
 public class GeneralUser implements User {
 
@@ -73,7 +81,7 @@ public class GeneralUser implements User {
 
 
 	@Override
-	public String getId() {
+	public String get() {
 		return id.get();
 	}
 
@@ -151,16 +159,21 @@ public class GeneralUser implements User {
 
 
 	@Override
-	public boolean equal(User anotheruser) {
-		if (contactperson.equal(anotheruser.getContactperson()) && 
-				companyname.equal(anotheruser.getCompanyName()) && 
-				companyaddress.equal(anotheruser.getCompanyAddress()) ) {
+	public boolean equal(SearchAbleObjects anotherSearchAbleUserObjects) {
+		if (contactperson.equal(((GeneralUser) anotherSearchAbleUserObjects).getContactperson()) && 
+				companyname.equal(((GeneralUser) anotherSearchAbleUserObjects).getCompanyName()) && 
+				companyaddress.equal(((GeneralUser) anotherSearchAbleUserObjects).getCompanyAddress()) ) {
 			return true;
 		} else {
 			return false;
 		}
 
 	}
+
+
+
+
+
 
 	
 	
