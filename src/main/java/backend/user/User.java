@@ -17,7 +17,7 @@ public interface User extends SearchAbleObjects, DatabaseObjects {
 	CompanyAddress getCompanyAddress();
 	void setCompanyAddress(CompanyAddress companyaddress);
 	
-	ID get();	
+	ID getID();	
 	
 	String getContactPersonNameString();
 	void setContactPersonNameString(String name);

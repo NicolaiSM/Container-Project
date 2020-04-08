@@ -82,8 +82,8 @@ public class GeneralUser implements User {
 
 
 	@Override
-	public ID get() {
-		return id;
+	public String get() {
+		return id.get();
 	}
 
 
@@ -160,7 +160,7 @@ public class GeneralUser implements User {
 
 
 	@Override
-	public boolean equal(StringSearchAbleObjects anotherSearchAbleUserObjects) {
+	public boolean equal(SearchAbleObjects anotherSearchAbleUserObjects) {
 		if (contactperson.equal(((GeneralUser) anotherSearchAbleUserObjects).getContactperson()) && 
 				companyname.equal(((GeneralUser) anotherSearchAbleUserObjects).getCompanyName()) && 
 				companyaddress.equal(((GeneralUser) anotherSearchAbleUserObjects).getCompanyAddress()) ) {
@@ -169,6 +169,12 @@ public class GeneralUser implements User {
 			return false;
 		}
 
+	}
+	
+	@Override
+	public ID getID() {
+		// TODO Auto-generated method stub
+		return id;
 	}
 
 

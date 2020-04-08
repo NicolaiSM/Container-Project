@@ -23,15 +23,15 @@ Feature: Create a new container
   Scenario: Successful creation of a new container
     Given a port of origin "Stockholm"
     And a list of valid ports ["Copenhagen", "Stockholm"]
-    And a list of existing containers [id: "CON-12345678", port "Stockholm"; id:"CON-11223344", port "Copenhagen"]
+    And a list of existing containers [port "Stockholm", port "Copenhagen"]
     When creating a new container
     Then a new container has been added to the existing containers
 
   Scenario: Unsuccessful creation of a new container: the port
     Given a port of origin "Bern"
     And a list of valid ports ["Copenhagen", "Stockholm"]
-    And a list of existing containers [id: "CON-12345678", port "Copenhagen"; id:"CON-11223344", port "Copenhagen"]
+    And a list of existing containers by port [port "Stockholm", port "Copenhagen"]
     When creating a new container
-    Then the port was not a validport
+    Then the container could not be created since the port was not a validport
     
     
