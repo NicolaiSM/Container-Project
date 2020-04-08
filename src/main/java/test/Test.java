@@ -1,23 +1,30 @@
 package test;
 
+
+
+import java.util.ArrayList;
+
+import backend.database.DatabaseHandler;
+import backend.objects.StringSearchAbleObjects;
+import backend.user.Client;
+
 public class Test {
-//	public static void main(String[] args) {
-//	Client newClient = new Client("Netto","a","a","a");
+	public static void main(String[] args) {
+	Client newClient = new Client("Nettoo","Langesvej22","a","a");
+	ArrayList<StringSearchAbleObjects> searchableobjectlist = new ArrayList<StringSearchAbleObjects>();
 	
-	
-//	DatabaseHandler.AddToDatabase(new Client("a","a","a","a"));
-//	DatabaseHandler.AddToDatabase(new Client("Netto", "Langesvej2", "Hanspeder", "HP@netto.dk"));
-//    DatabaseHandler.AddToDatabase(new Client("Topsil", "VEJ 1", "Oliver", "O@Topsil.dk"));
+	DatabaseHandler.getClientlist().AddElement(new Client("a","a","a","a"));
+	DatabaseHandler.getClientlist().AddElement(new Client("Netto", "Langesvej2", "Hanspeder", "HP@netto.dk"));
+	DatabaseHandler.getClientlist().AddElement(new Client("Topsil", "VEJ 1", "Oliver", "O@Topsil.dk"));
     
     
-//	System.out.println(SearchDatabase.newSearch().Search(ClientDatabase.getInstance(), newClient.getCompanyName()).anyMatch());
-//	System.out.println(SearchDatabase.newSearch().Search(ClientDatabase.getInstance(), newClient.getCompanyName()).countMatch());
+	searchableobjectlist = new ArrayList<StringSearchAbleObjects>();
+	searchableobjectlist.add(newClient.getCompanyName());
+	searchableobjectlist.add(newClient.getCompanyAddress());
 	
+	DatabaseHandler.getClientlist().AddUniqueElement(newClient, searchableobjectlist);
 	
-//	PersonName searchpersonname;
-//	CompanyName searchcompanyname;
-//	Match searchresult;
-//	ArrayList<SearchAbleObjects> searchkriterialist = new ArrayList<SearchAbleObjects>();
+	DatabaseHandler.getClientlist().AddUniqueElement(newClient, searchableobjectlist);
 	
-//}
+	}
 }

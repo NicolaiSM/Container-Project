@@ -1,7 +1,6 @@
 package backend.database;
-import java.util.ArrayList;
 
-import backend.user.User;
+import java.util.ArrayList;
 
 public interface SimpelDatabase<T> {
 	

@@ -1,8 +1,10 @@
 package backend.database;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
-import backend.objects.SearchAbleObjects;
+import backend.objects.StringSearchAbleObjects;
+
 
 public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelDatabase<T> {
 
@@ -20,39 +22,66 @@ public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelD
 		list.add(databaseobject);
 	}
 	
+	
+	
+	public void AddUniqueElement(T databaseobject, ArrayList<StringSearchAbleObjects> searchableobjectslist) {
+		
+		if (anyMatch(searchableobjectslist)) {
+			
+		} else {
+			 AddElement(databaseobject);
+			 System.out.println("Result from addElement");
+			 System.out.println(getList());
+			 
+		}
+	}
+	
+	
 	public ArrayList<T> getList() {
 		return list;
 	}
 	
-	public void newQuery(ArrayList<SearchAbleObjects> userobjectlist) {
-		QueryDatabase.newQuery(list, userobjectlist);
+	public List<T> newQuery( ArrayList<StringSearchAbleObjects> userobjectlist) {
+		return this.list.stream().filter((databaseobject) -> IsEqual(databaseobject, userobjectlist)).collect(Collectors.toList());
 	}
 	
-	public class QueryDatabase<T extends DatabaseObjects> {
+
+	
+	
+	public boolean IsEqual(T databaseobject, ArrayList<StringSearchAbleObjects> searchableobjectlist) {
 		
-		public static QueryDatabase<T> newQuery(ArrayList<T> list,ArrayList<SearchAbleObjects> userobjectlist) {
-			return new QueryDatabase(list, userobjectlist);
+		for (StringSearchAbleObjects object : searchableobjectlist) {
+			if (IsEqual(databaseobject, object)) {
+			} else {
+				return false;
+			}
 		}
-		
-		private QueryDatabase(ArrayList<T> list,ArrayList<SearchAbleObjects> userobjectlist) {
-			SearchInDatabase(list, userobjectlist);
-		}
-		
-		public void SearchInDatabase(ArrayList<T> list,ArrayList<SearchAbleObjects> userobjectlist) {
-			list.stream().filter( (object) -> IsEqual(object, userobjectlist)).collect(Collectors.toList());
-		}
-		
-		public boolean IsEqual(T databaseobject, ArrayList<SearchAbleObjects> searchableobjectlist) {
-			return searchableobjectlist.stream().allMatch( (searchableobject) -> IsEqual(databaseobject, searchableobject));
-		}
-		
-		public boolean IsEqual(T object, SearchAbleObjects userobject) {
-			return object.universelGet(userobject).equal(userobject);
-		}
-		
-		
-		
+		return true;
 	}
+	
+	public boolean IsEqual(T databaseobject, StringSearchAbleObjects object) {
+		return databaseobject.universelGet(object).equal(object);
+	}
+	
+	public boolean anyMatch(ArrayList<StringSearchAbleObjects> userobjectlist) {
+		
+		System.out.println("Database to search in");
+		System.out.println(list);
+		System.out.println("Search criteria to search in");
+		System.out.println(userobjectlist);
+		System.out.println("Resukt from query");
+		System.out.println(newQuery(userobjectlist));
+		
+		if(newQuery(userobjectlist).size() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	
 
 	
 }
