@@ -6,7 +6,7 @@ public class DatabaseHandler {
 	
 	private static GeneralSimpelDatabase<Client> clientlist = null;
 	
-	public static GeneralSimpelDatabase<Client> getClientlist() {
+	public static GeneralSimpelDatabase<Client> getClientList() {
 		if (clientlist == null) {
 			clientlist = new GeneralSimpelDatabase<Client>();
 		}

@@ -8,7 +8,7 @@ import backend.objects.SearchAbleObjects;
 
 public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelDatabase<T> {
 
-	ArrayList<T> list = new ArrayList<T>();
+	private ArrayList<T> list = new ArrayList<T>();
 	
 	@Override
 	public Integer getSize() {
@@ -24,15 +24,13 @@ public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelD
 	
 	
 	
-	public void AddUniqueElement(T databaseobject, ArrayList<SearchAbleObjects> searchableobjectslist) {
+	public boolean AddUniqueElement(T databaseobject, ArrayList<SearchAbleObjects> searchableobjectslist) {
 		
 		if (anyMatch(searchableobjectslist)) {
-			
+			return false;
 		} else {
 			 AddElement(databaseobject);
-			 System.out.println("Result from addElement");
-			 System.out.println(getList());
-			 
+			 return true;
 		}
 	}
 	
@@ -64,13 +62,6 @@ public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelD
 	}
 	
 	public boolean anyMatch(ArrayList<SearchAbleObjects> userobjectlist) {
-		
-		System.out.println("Database to search in");
-		System.out.println(list);
-		System.out.println("Search criteria to search in");
-		System.out.println(userobjectlist);
-		System.out.println("Resukt from query");
-		System.out.println(newQuery(userobjectlist));
 		
 		if(newQuery(userobjectlist).size() > 0) {
 			return true;
