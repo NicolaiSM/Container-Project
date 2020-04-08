@@ -21,27 +21,13 @@ Feature: find clients based one or more of it attributes
 
 	Background: attributes is contactperson firstname, contacperson lastname, contactperson email, client adress and client name
 
-  @tag1
-  Scenario: one or more cleints found matching one attribute 
-    Given a given a name for a client "Xlbyg"
-    And a list of clients with attributes name: "Xlbyg", address: "Englandsvej 102, 2300 København", Contactperson name "Rasmus Seebach", Contactperson email "RB@xlbyg.com" and name: "NovaNordisk", address: "Englandsvej 103, 2300 København", Contactperson name: "Thomas Dhal", Contactperson email: "TD@NN.com"
-    When Finding clients that matches keyword
-    Then Check if any result is found
-	
-	@tag1
-	Scenario: no clients found that matching one keyword
-		Given a given a name for a client "Topsil"
-    And a list of clients with attributes name: "Xlbyg", address: "Englandsvej 102, 2300 København", Contactperson name "Rasmus Seebach", Contactperson email "RB@xlbyg.com" and name: "NovaNordisk", address: "Englandsvej 103, 2300 København", Contactperson name: "Thomas Dhal", Contactperson email: "TD@NN.com"
-    When Finding clients that matches keyword
-    Then Check that no result is found
-    
-	Scenario: one or more cleints found matching two keywords
+	Scenario: one or more cleints found matching one or more keywords
 		Given a name for a client "Xlbyg" and a contactperson name "Rasmus Seebach"
     And a list of clients with attributes name: "Xlbyg", address: "Englandsvej 102, 2300 København", Contactperson name "Rasmus Seebach", Contactperson email "RB@xlbyg.com" and name: "NovaNordisk", address: "Englandsvej 103, 2300 København", Contactperson name: "Thomas Dhal", Contactperson email: "TD@NN.com"
     When Finding clients that matches keyword
-    Then Check if any result is found
+    Then Check if any client is found
 		
-	Scenario: no clients found matching two keywords
+	Scenario: no clients found matching one or more keywords
 		Given a name for a client "Topsil" and a contactperson name "Julius Ceaser"
     And a list of clients with attributes name: "Xlbyg", address: "Englandsvej 102, 2300 København", Contactperson name "Rasmus Seebach", Contactperson email "RB@xlbyg.com" and name: "NovaNordisk", address: "Englandsvej 103, 2300 København", Contactperson name: "Thomas Dhal", Contactperson email: "TD@NN.com"
     When Finding clients that matches keyword

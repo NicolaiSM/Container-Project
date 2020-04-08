@@ -6,6 +6,7 @@ import backend.objects.ID;
 import backend.objects.PersonEmail;
 import backend.objects.PersonName;
 import backend.objects.SearchAbleObjects;
+import backend.objects.StringSearchAbleObjects;
 import backend.objects.clientID;
 
 public class GeneralUser implements User {
@@ -81,8 +82,8 @@ public class GeneralUser implements User {
 
 
 	@Override
-	public String get() {
-		return id.get();
+	public ID get() {
+		return id;
 	}
 
 
@@ -159,7 +160,7 @@ public class GeneralUser implements User {
 
 
 	@Override
-	public boolean equal(SearchAbleObjects anotherSearchAbleUserObjects) {
+	public boolean equal(StringSearchAbleObjects anotherSearchAbleUserObjects) {
 		if (contactperson.equal(((GeneralUser) anotherSearchAbleUserObjects).getContactperson()) && 
 				companyname.equal(((GeneralUser) anotherSearchAbleUserObjects).getCompanyName()) && 
 				companyaddress.equal(((GeneralUser) anotherSearchAbleUserObjects).getCompanyAddress()) ) {

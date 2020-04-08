@@ -1,10 +1,10 @@
-package user;
-import database.ClientDatabase;
+package backend.objects;
+
 
 public class clientID extends ID {
-	private String identifier = "CLI";
+	private static String identifier = "CLI";
 	
 	public clientID() {
-		super();
+		super(identifier);
 	}	
 }
