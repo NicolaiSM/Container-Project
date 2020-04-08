@@ -1,11 +1,11 @@
 package backend.objects;
 
 
-public class LogisitkClientID extends ID {
+public class LogisticCompanyID extends ID {
 	
 	private static String identifier = "LOG";
 	
-	public LogisitkClientID() {
+	public LogisticCompanyID() {
 		super(identifier);
 	}	
 	
