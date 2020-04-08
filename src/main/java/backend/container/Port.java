@@ -2,22 +2,17 @@ package backend.container;
 
 
 import backend.database.DatabaseObjects;
-import backend.objects.SearchAbleObjects;
-import backend.objects.StringObjects;
 
-public class Port extends StringObjects implements DatabaseObjects {
-
+public class Port implements DatabaseObjects {
+	
+	private String port;
+	
 	public Port(String port) {
-		super(port);
+		this.port = port;
 	}
-
-	@Override
-	public SearchAbleObjects universelGet(SearchAbleObjects searchableobject) {
-		if (searchableobject instanceof Port) {
-			return this;
-		} else {
-			return null;
-		}
+	
+	public String getPort() {
+		return port;
 	}
 
 }

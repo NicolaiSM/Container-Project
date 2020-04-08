@@ -1,180 +1,82 @@
 package backend.user;
 
-import backend.objects.CompanyAddress;
-import backend.objects.CompanyName;
-import backend.objects.ID;
-import backend.objects.PersonEmail;
-import backend.objects.PersonName;
-import backend.objects.SearchAbleObjects;
-import backend.objects.clientID;
+import backend.objects.*;
+
 
 public class GeneralUser implements User {
 
 	
-	private Person contactperson;
-	private CompanyName companyname;
-	private CompanyAddress companyaddress;
+	private String contactperonsname;
+	private String contactperonsemail;
+	private String companyname;
+	private String companyaddress;
 	private ID id;
 	
 	
 	public GeneralUser(String companyname, String companyaddress, String contactperonsname, String contactperonsemail) {
-		contactperson = new Person(contactperonsemail, contactperonsemail);
-		this.companyname = new CompanyName(companyname);
-		this.companyaddress = new CompanyAddress(companyaddress);	
+		this.contactperonsname = contactperonsname;
+		this.contactperonsemail = contactperonsemail;
+		this.companyname = companyname;
+		this.companyaddress = companyaddress;	
 		this.id = new clientID();
-	}
-	
-	
-	public Person getContactperson() {
-		return contactperson;
-	}
-	public void setContactperson(Person contactperson) {
-		this.contactperson = contactperson;
-	}
-	
-	
-	public String getCompanyNameString() {
-		return companyname.get();
-	}
-	
-	public void setCompanyNameString(String companyname) {
-		this.companyname.set(companyname);
-	}
-
-
-	@Override
-	public String getCompanyAddressString() {
-		return companyaddress.get();
-	}
-
-
-	@Override
-	public void setCompanyAddressString(String companyaddress) {
-		this.companyaddress.set(companyaddress);
+		
 		
 	}
 	
-	@Override
-	public CompanyName getCompanyName() {
+	public String getContactperonsname() {
+		return contactperonsname;
+	}
+
+
+	public void setContactperonsname(String contactperonsname) {
+		this.contactperonsname = contactperonsname;
+	}
+
+
+	public String getContactperonsemail() {
+		return contactperonsemail;
+	}
+
+
+	public void setContactperonsemail(String contactperonsemail) {
+		this.contactperonsemail = contactperonsemail;
+	}
+
+
+	public String getCompanyname() {
 		return companyname;
 	}
 
 
-	@Override
-	public void setCompanyName(CompanyName companyname) {
+	public void setCompanyname(String companyname) {
 		this.companyname = companyname;
-		
 	}
 
 
-	@Override
-	public CompanyAddress getCompanyAddress() {
+	public String getCompanyaddress() {
 		return companyaddress;
 	}
 
 
-	@Override
-	public void setCompanyAddress(CompanyAddress companyaddress) {
+	public void setCompanyaddress(String companyaddress) {
 		this.companyaddress = companyaddress;
-		
 	}
 
 
-	@Override
-	public String get() {
-		return id.get();
+	public String getIdString() {
+		return id.getID();
 	}
 
 
-	@Override
-	public String getContactPersonNameString() {
-		return contactperson.getNameString();
-	}
 
 
-	@Override
-	public void setContactPersonNameString(String name) {
-		contactperson.setNameString(name);
-		
-	}
 
 
-	@Override
-	public String getContactPersonEmailString() {
-		return contactperson.getEmailString();
-	}
 
 
-	@Override
-	public void setContactPersonEmailString(String email) {
-		contactperson.setEmailString(email);
-		
-	}
-
-
-	@Override
-	public PersonName getContactPersonName() {
-		return contactperson.getName();
-	}
-
-
-	@Override
-	public void setContactPersonName(PersonName name) {
-		contactperson.setName(name);
-		
-	}
-
-
-	@Override
-	public PersonEmail getContactPersonEmail() {
-		return contactperson.getEmail();
-	}
-
-
-	@Override
-	public void setContactPersonEmail(PersonEmail email) {
-		contactperson.setEmail(email);
-		
-	}
-
-
-	@Override
-	public SearchAbleObjects universelGet(SearchAbleObjects anotherSearchAbleUserObjects) {
-		
-		if (anotherSearchAbleUserObjects instanceof PersonEmail) {
-			return contactperson.getEmail();
-		} else if (anotherSearchAbleUserObjects instanceof PersonName) {
-			return contactperson.getName();
-		} else if (anotherSearchAbleUserObjects instanceof CompanyAddress) {
-			return companyaddress;
-		} else if (anotherSearchAbleUserObjects instanceof CompanyName) {
-			return companyname;
-		} else if (anotherSearchAbleUserObjects instanceof ID) {
-			return id;
-		} else {
-			return null;
-		}
-
-	}
-
-
-	@Override
-	public boolean equal(SearchAbleObjects anotherSearchAbleUserObjects) {
-		if (contactperson.equal(((GeneralUser) anotherSearchAbleUserObjects).getContactperson()) && 
-				companyname.equal(((GeneralUser) anotherSearchAbleUserObjects).getCompanyName()) && 
-				companyaddress.equal(((GeneralUser) anotherSearchAbleUserObjects).getCompanyAddress()) ) {
-			return true;
-		} else {
-			return false;
-		}
-
-	}
 	
-	@Override
-	public ID getID() {
-		// TODO Auto-generated method stub
-		return id;
-	}
+	
+	
 
 
 

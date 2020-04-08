@@ -13,26 +13,15 @@ public class LogisticCompanyFacade {
 	ArrayList<SearchAbleObjects> searchcriterialist;
 	
 	public void CreatePort(String portName) {
-		searchcriterialist = new ArrayList<SearchAbleObjects>();
-		searchcriterialist.add(new Port(portName));
-		
-		DatabaseHandler.getPortList().AddUniqueElement(new Port(portName), searchcriterialist);
+		DatabaseHandler.getPortList().AddUniqueElement(new Port(portName), QueryGenerator.startQuery().addQuery("port", portName).finishQuery());
 	}
 	
 	public boolean RegisterClient(String clientName, String clientaddress, String contactpersonname, String contactpersonemail) {
-		searchcriterialist = new ArrayList<SearchAbleObjects>();
-		searchcriterialist.add(new CompanyName(clientName));
-		
-		return DatabaseHandler.getClientList().AddUniqueElement(new Client(clientName, clientaddress, contactpersonname, contactpersonemail),searchcriterialist);
-
+		return DatabaseHandler.getClientList().AddUniqueElement(new Client(clientName, clientaddress, contactpersonname, contactpersonemail), QueryGenerator.startQuery().addQuery("companyname", clientName).finishQuery());
 	}
 	
 	public boolean CreateContainer(Port port) {
-		
-		searchcriterialist = new ArrayList<SearchAbleObjects>();
-		searchcriterialist.add(port);
-		
-		if (DatabaseHandler.getPortList().anyMatch(searchcriterialist)) {
+		if (DatabaseHandler.getPortList().anyMatch(QueryGenerator.startQuery().addQuery("companyname", port.getPort()).finishQuery())) {
 			DatabaseHandler.getContainerList().AddElement(new Container(port));
 			return true;
 		}

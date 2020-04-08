@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import backend.container.Container;
 import backend.container.Port;
 import backend.database.DatabaseHandler;
-
+import backend.database.Pair;
+import backend.database.QueryGenerator;
 import backend.objects.CompanyName;
 import backend.objects.PersonName;
 import backend.objects.SearchAbleObjects;
@@ -19,7 +20,7 @@ public class StepDefinition {
 	
 	LogisticCompanyFacade logisticCompany = new LogisticCompanyFacade();
 	boolean bool;
-	ArrayList<SearchAbleObjects> searchableobjectlist;
+	ArrayList<Pair<?, ?>> searchableobjectlist;
 
 	@Given("a list of clients with attributes name: {string}, address: {string}, Contactperson name {string}, Contactperson email {string} and name: {string}, address: {string}, Contactperson name: {string}, Contactperson email: {string}")
 	public void a_list_of_clients_with_attributes_name_address_Contactperson_name_Contactperson_email_and_name_address_Contactperson_name_Contactperson_email(String clientname1, String clientaddress1, String contactpersonname1, String contactpersonemail1, String clientname2, String clientaddress2, String contactpersonname2, String contactpersonemail2) {
@@ -72,9 +73,7 @@ public class StepDefinition {
 
 	@Given("a name for a client {string} and a contactperson name {string}")
 	public void a_name_for_a_client_and_a_contactperson_name(String companyname, String personname) {
-		searchableobjectlist = new ArrayList<SearchAbleObjects>();
-	    searchableobjectlist.add( new CompanyName(companyname));
-		searchableobjectlist.add( new PersonName(personname));
+		searchableobjectlist = QueryGenerator.startQuery().addQuery("companyname", companyname).addQuery("contactpersonsname", personname).finishQuery();
 	}
 
 

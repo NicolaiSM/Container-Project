@@ -3,12 +3,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import backend.objects.SearchAbleObjects;
+
+import java.lang.reflect.Field;
 
 
 public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelDatabase<T> {
 
-	ArrayList<T> list = new ArrayList<T>();
+	private ArrayList<T> list = new ArrayList<T>();
 	
 	@Override
 	public Integer getSize() {
@@ -24,7 +25,7 @@ public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelD
 	
 	
 	
-	public boolean AddUniqueElement(T databaseobject, ArrayList<SearchAbleObjects> searchableobjectslist) {
+	public boolean AddUniqueElement(T databaseobject, ArrayList<Pair<?,?>> searchableobjectslist) {
 		
 		if (anyMatch(searchableobjectslist)) {
 			return false;
@@ -39,36 +40,54 @@ public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelD
 		return list;
 	}
 	
-	public List<T> newQuery( ArrayList<SearchAbleObjects> userobjectlist) {
-		return this.list.stream().filter((databaseobject) -> IsEqual(databaseobject, userobjectlist)).collect(Collectors.toList());
+	public List<T> newQuery(String query) {
+		return this.list.stream().filter((databaseobject) -> fieldAnyMatch(databaseobject, query)).collect(Collectors.toList());
 	}
 	
-
+	public List<T> newQuery(ArrayList<Pair<?,?>> query) {
+		return this.list.stream().filter((databaseobject) -> fieldAnyMatch(databaseobject, query)).collect(Collectors.toList());
+	}
 	
-	
-	public boolean IsEqual(T databaseobject, ArrayList<SearchAbleObjects> searchableobjectlist) {
-		
-		for (SearchAbleObjects object : searchableobjectlist) {
-			if (IsEqual(databaseobject, object)) {
-			} else {
-				return false;
+	public boolean fieldAnyMatch(T databaseobject, String value) {
+		for(Field attribute: databaseobject.getClass().getDeclaredFields()) {
+			if(attribute.equals(value)) {
+				return true;
 			}
 		}
-		return true;
-	}
-	
-	public boolean IsEqual(T databaseobject, SearchAbleObjects object) {
-		return databaseobject.universelGet(object).equal(object);
-	}
-	
-	public boolean anyMatch(ArrayList<SearchAbleObjects> userobjectlist) {
 		
-		if(newQuery(userobjectlist).size() > 0) {
+		return false;
+	}
+	
+	public boolean fieldAnyMatch(T databaseobject, ArrayList<Pair<?,?>> value) {
+		for(Field attribute: databaseobject.getClass().getDeclaredFields()) {
+			if(attribute.equals(value)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	
+	public boolean anyMatch(String value) {
+		
+		if(newQuery(value).size() > 0) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+	
+	public boolean anyMatch(ArrayList<Pair<?,?>> value) {
+		
+		if(newQuery(value).size() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+
 	
 	
 	
