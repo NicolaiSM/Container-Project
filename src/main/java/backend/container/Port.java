@@ -13,8 +13,11 @@ public class Port extends StringObjects implements DatabaseObjects {
 
 	@Override
 	public SearchAbleObjects universelGet(SearchAbleObjects searchableobject) {
-		// TODO Auto-generated method stub
-		return null;
+		if (searchableobject instanceof Port) {
+			return this;
+		} else {
+			return null;
+		}
 	}
 
 }

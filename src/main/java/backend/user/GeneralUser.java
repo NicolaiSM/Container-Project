@@ -6,7 +6,6 @@ import backend.objects.ID;
 import backend.objects.PersonEmail;
 import backend.objects.PersonName;
 import backend.objects.SearchAbleObjects;
-import backend.objects.StringSearchAbleObjects;
 import backend.objects.clientID;
 
 public class GeneralUser implements User {
