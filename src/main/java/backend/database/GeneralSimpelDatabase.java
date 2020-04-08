@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import backend.objects.StringSearchAbleObjects;
+import backend.objects.SearchAbleObjects;
 
 
 public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelDatabase<T> {
@@ -24,7 +24,7 @@ public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelD
 	
 	
 	
-	public void AddUniqueElement(T databaseobject, ArrayList<StringSearchAbleObjects> searchableobjectslist) {
+	public void AddUniqueElement(T databaseobject, ArrayList<SearchAbleObjects> searchableobjectslist) {
 		
 		if (anyMatch(searchableobjectslist)) {
 			
@@ -41,16 +41,16 @@ public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelD
 		return list;
 	}
 	
-	public List<T> newQuery( ArrayList<StringSearchAbleObjects> userobjectlist) {
+	public List<T> newQuery( ArrayList<SearchAbleObjects> userobjectlist) {
 		return this.list.stream().filter((databaseobject) -> IsEqual(databaseobject, userobjectlist)).collect(Collectors.toList());
 	}
 	
 
 	
 	
-	public boolean IsEqual(T databaseobject, ArrayList<StringSearchAbleObjects> searchableobjectlist) {
+	public boolean IsEqual(T databaseobject, ArrayList<SearchAbleObjects> searchableobjectlist) {
 		
-		for (StringSearchAbleObjects object : searchableobjectlist) {
+		for (SearchAbleObjects object : searchableobjectlist) {
 			if (IsEqual(databaseobject, object)) {
 			} else {
 				return false;
@@ -59,11 +59,11 @@ public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelD
 		return true;
 	}
 	
-	public boolean IsEqual(T databaseobject, StringSearchAbleObjects object) {
+	public boolean IsEqual(T databaseobject, SearchAbleObjects object) {
 		return databaseobject.universelGet(object).equal(object);
 	}
 	
-	public boolean anyMatch(ArrayList<StringSearchAbleObjects> userobjectlist) {
+	public boolean anyMatch(ArrayList<SearchAbleObjects> userobjectlist) {
 		
 		System.out.println("Database to search in");
 		System.out.println(list);

@@ -16,13 +16,15 @@ public class StringObjects implements StringSearchAbleObjects {
 		this.stringrepresentationofobject = stringrepresentationofobject;
 	}
 	
-	public boolean equal(StringSearchAbleObjects  anotherSearchAbleUserObjects) {
+	public boolean equal(SearchAbleObjects  anotherSearchAbleUserObjects) {
 		if (stringrepresentationofobject.equals(anotherSearchAbleUserObjects.get())) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+
+
 
 
 	
