@@ -10,6 +10,10 @@ public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelD
 
 	private ArrayList<T> list = new ArrayList<T>();
 	
+	public void resetlist() {
+		this.list = new ArrayList<T>();
+	}
+	
 	@Override
 	public Integer getSize() {
 		Integer size;

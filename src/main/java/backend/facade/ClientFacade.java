@@ -10,6 +10,8 @@ import backend.user.*;
 public class ClientFacade {
 	private Client client;
 	private ArrayList<SearchAbleObjects> searchcriterialist;
+	
+	
 	public boolean setClientName(String companyName) {
 		searchcriterialist = new ArrayList<SearchAbleObjects>();
 		searchcriterialist.add(new CompanyName(companyName));

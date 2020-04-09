@@ -42,4 +42,26 @@ public class LogisticCompanyFacade {
 		
 	}
 	
+	
+	public Client getClient(ArrayList<SearchAbleObjects> query, String companyname) {
+		return DatabaseHandler.getClientList().newQuery2(query);
+	}
+	
+	public boolean setClientName(Client client, String companyname) {
+		
+		
+		searchcriterialist = new ArrayList<SearchAbleObjects>();
+		searchcriterialist.add(new CompanyName(companyname));
+		
+		
+		if (DatabaseHandler.getClientList().anyMatch(searchcriterialist)) {
+			return false;
+		} else {
+			client.setCompanyNameString(companyname);
+			return true;
+		}
+	}
+	
+	
+	
  }
