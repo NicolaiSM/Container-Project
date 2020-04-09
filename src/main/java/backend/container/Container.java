@@ -3,7 +3,7 @@ package backend.container;
 import backend.objects.*;
 import backend.database.*;
 
-public class Container implements DatabaseObjects, SearchAbleObjects {
+public class Container extends DatabaseObject implements SearchAbleObjects {
 
 	private ID id;
 	private Port port;

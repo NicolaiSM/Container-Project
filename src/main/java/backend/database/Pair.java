@@ -1,18 +1,18 @@
 package backend.database;
 
-public class Pair<K, V> {
+public class Pair {
 	
-	private K first;
-	private V second;
+	private String first;
+	private String second;
 	
-	public K getFirst() {
+	public String getFirst() {
 		return first;
 	}
-	public V getSecond() {
+	public String getSecond() {
 		return second;
 	}
 	
-	public Pair(K first, V second) {
+	public Pair(String first, String second) {
 		this.first = first;
 		this.second = second;
 	}

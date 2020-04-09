@@ -9,11 +9,6 @@ import backend.container.Port;
 import backend.database.DatabaseHandler;
 import backend.database.Pair;
 import backend.database.QueryGenerator;
-import backend.objects.CompanyName;
-import backend.objects.PersonName;
-import backend.objects.SearchAbleObjects;
-import backend.objects.StringObjects;
-import backend.user.Client;
 import backend.facade.*;
 
 public class StepDefinition {

@@ -7,25 +7,25 @@ import java.util.stream.Collectors;
 import java.lang.reflect.Field;
 
 
-public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelDatabase<T> {
+public class GeneralSimpelDatabase<DatabaseObject> {
 
-	private ArrayList<T> list = new ArrayList<T>();
+	private ArrayList<DatabaseObject> list = new ArrayList<DatabaseObject>();
 	
-	@Override
+	
 	public Integer getSize() {
 		Integer size;
 		size = list.size();
 		return size;
 	}
 
-	@Override
-	public void AddElement(T databaseobject) {
+	
+	public void AddElement(DatabaseObject databaseobject) {
 		list.add(databaseobject);
 	}
 	
 	
 	
-	public boolean AddUniqueElement(T databaseobject, ArrayList<Pair<?,?>> searchableobjectslist) {
+	public boolean AddUniqueElement(DatabaseObject databaseobject, ArrayList<Pair> searchableobjectslist) {
 		
 		if (anyMatch(searchableobjectslist)) {
 			return false;
@@ -36,19 +36,19 @@ public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelD
 	}
 	
 	
-	public ArrayList<T> getList() {
+	public ArrayList<DatabaseObject> getList() {
 		return list;
 	}
 	
-	public List<T> newQuery(String query) {
+	public List<DatabaseObject> newQuery(String query) {
 		return this.list.stream().filter((databaseobject) -> fieldAnyMatch(databaseobject, query)).collect(Collectors.toList());
 	}
 	
-	public List<T> newQuery(ArrayList<Pair<?,?>> query) {
+	public List<DatabaseObject> newQuery(ArrayList<Pair> query) {
 		return this.list.stream().filter((databaseobject) -> fieldAnyMatch(databaseobject, query)).collect(Collectors.toList());
 	}
 	
-	public boolean fieldAnyMatch(T databaseobject, String value) {
+	public boolean fieldAnyMatch(DatabaseObject databaseobject, String value) {
 		for(Field attribute: databaseobject.getClass().getDeclaredFields()) {
 			if(attribute.equals(value)) {
 				return true;
@@ -58,10 +58,15 @@ public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelD
 		return false;
 	}
 	
-	public boolean fieldAnyMatch(T databaseobject, ArrayList<Pair<?,?>> value) {
-		for(Field attribute: databaseobject.getClass().getDeclaredFields()) {
-			if(attribute.equals(value)) {
-				return true;
+	public boolean fieldAnyMatch(DatabaseObject databaseobject, ArrayList<Pair> value) {
+		for(Pair pair : value) {
+			try {
+				if(databaseobject.getClass().getField(pair.getFirst()).toString().equals(pair.getSecond())) {
+					return true;
+				} 
+			} catch (NoSuchFieldException | SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		
@@ -78,7 +83,7 @@ public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelD
 		}
 	}
 	
-	public boolean anyMatch(ArrayList<Pair<?,?>> value) {
+	public boolean anyMatch(ArrayList<Pair> value) {
 		
 		if(newQuery(value).size() > 0) {
 			return true;
@@ -87,7 +92,6 @@ public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelD
 		}
 	}
 	
-
 	
 	
 	

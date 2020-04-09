@@ -1,9 +1,9 @@
 package backend.container;
 
 
-import backend.database.DatabaseObjects;
+import backend.database.DatabaseObject;
 
-public class Port implements DatabaseObjects {
+public class Port extends DatabaseObject {
 	
 	private String port;
 	

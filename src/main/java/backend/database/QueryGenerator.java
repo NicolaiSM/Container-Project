@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 public class QueryGenerator {
 	
-	private ArrayList<Pair<?,?>> query;
+	private ArrayList<Pair> query;
 	
 	private static QueryGenerator querygenerator = null;
 	
-	public <K,V> QueryGenerator addQuery(K first, V second) {
-		query.add( new Pair<K, V>(first, second));
+	public QueryGenerator addQuery(String first, String second) {
+		query.add( new Pair(first, second));
 		return querygenerator;
 	}
 	
@@ -19,7 +19,7 @@ public class QueryGenerator {
 		return querygenerator;
 	}
 	
-	public ArrayList<Pair<?,?>> finishQuery()  {
+	public ArrayList<Pair> finishQuery()  {
 		return query;
 	}
 

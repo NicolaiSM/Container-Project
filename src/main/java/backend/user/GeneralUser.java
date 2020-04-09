@@ -1,9 +1,10 @@
 package backend.user;
 
+import backend.database.DatabaseObject;
 import backend.objects.*;
 
 
-public class GeneralUser implements User {
+public class GeneralUser extends DatabaseObject {
 
 	
 	private String contactperonsname;

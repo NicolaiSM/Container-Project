@@ -6,5 +6,5 @@ public class clientID extends ID {
 	
 	public clientID() {
 		super(identifier);
-	}	
+	}
 }
