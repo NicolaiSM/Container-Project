@@ -42,7 +42,9 @@ public class GeneralSimpelDatabase<T extends DatabaseObjects> implements SimpelD
 	public List<T> newQuery( ArrayList<SearchAbleObjects> userobjectlist) {
 		return this.list.stream().filter((databaseobject) -> IsEqual(databaseobject, userobjectlist)).collect(Collectors.toList());
 	}
-	
+	public T newQuery2( ArrayList<SearchAbleObjects> userobjectlist) {
+		return this.list.stream().filter((databaseobject) -> IsEqual(databaseobject, userobjectlist)).findFirst().orElse(null);
+	}
 
 	
 	

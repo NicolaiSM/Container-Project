@@ -13,20 +13,19 @@
 #| (Data Tables)
 #@ (Tags/Labels):To group Scenarios
 #<> (placeholder)
-#""
+#""s
 ## (Comments)
 #Sample Feature Definition Template
 
-Background: We assume that the we are already given an existing client. Which is in the system.
 
 @tag
 Feature: Update client information
+Background: We assume that the we are already given an existing client. Which is in the system.
 
   @tag1
   Scenario: Successful update of client information
-    Given a client with client ID "CLI-11111111" , client name "Netto", address "Hindbærsnittevej 23" and reference person " Jens Bï¿½rge" and email "Jens.Bï¿½rge@live.dk"
+    Given a client with client name "Netto", address "Hindbï¿½rsnittevej 23" and reference person " Jens Bï¿½rge" and email "Jens.Bï¿½rge@live.dk"
     And Client wants to update client name to "Ghetto Netto" 
     When Change previous client information to the given information
     Then Client has been updated
-    
-  Scenario: Unsuccesful
+   

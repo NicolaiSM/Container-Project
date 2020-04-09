@@ -11,6 +11,7 @@ import backend.database.DatabaseHandler;
 import backend.objects.CompanyName;
 import backend.objects.PersonName;
 import backend.objects.SearchAbleObjects;
+import backend.user.Client;
 import backend.facade.*;
 
 public class StepDefinition {
@@ -18,7 +19,10 @@ public class StepDefinition {
 	LogisticCompanyFacade logisticCompany = new LogisticCompanyFacade();
 	boolean bool;
 	ArrayList<SearchAbleObjects> searchableobjectlist;
-
+	String clientName1;
+	String clientName2;
+	Client client;
+	ClientFacade clientFacade = new ClientFacade();
 	@Given("a list of clients with attributes name: {string}, address: {string}, Contactperson name {string}, Contactperson email {string} and name: {string}, address: {string}, Contactperson name: {string}, Contactperson email: {string}")
 	public void a_list_of_clients_with_attributes_name_address_Contactperson_name_Contactperson_email_and_name_address_Contactperson_name_Contactperson_email(String clientname1, String clientaddress1, String contactpersonname1, String contactpersonemail1, String clientname2, String clientaddress2, String contactpersonname2, String contactpersonemail2) {
 		logisticCompany.RegisterClient(clientname1, clientaddress1, contactpersonname1, contactpersonemail1);
@@ -124,4 +128,29 @@ public class StepDefinition {
 	}
 	
 //	------------------ END CREATE CONTAINER-------------------
+
+//	------------------ START UPDATE CLIENT INFORMATION -------
+	
+	@Given("a client with client name {string}, address {string} and reference person {string} and email {string}")
+	public void a_client_with_client_name_address_and_reference_person_and_email(String clientName, String address, String referencePerson, String email) {
+		client = new Client(clientName,address,referencePerson,email);
+	}
+
+	@Given("Client wants to update client name to {string}")
+	public void client_wants_to_update_client_name_to(String clientName) {
+		this.clientName1 = clientName;
+	}
+
+	@When("Change previous client information to the given information")
+	public void change_previous_client_information_to_the_given_information() {
+	    clientFacade.setClient(client);
+	    bool = clientFacade.setClientName(clientName1);
+	}
+
+	@Then("Client has been updated")
+	public void client_has_been_updated() {
+	    assertTrue(bool);
+	}
+//	------------------ END UPDATE CLIENT INFORMATION -------
+
 }
