@@ -28,6 +28,13 @@ public class StepDefinition {
 		logisticCompany.RegisterClient(clientname1, clientaddress1, contactpersonname1, contactpersonemail1);
 		logisticCompany.RegisterClient(clientname2, clientaddress2, contactpersonname2, contactpersonemail2);
 	}
+	
+	@Given("a database of clients with attributes name: {string}, address: {string}, contactperson name {string}, contactperson email {string} and name: {string} , address: {string}, contactperson name: {string}, contactperson email: {string}")
+	public void a_database_of_clients_with_attributes_name_address_contactperson_name_contactperson_email_and_name_address_contactperson_name_contactperson_email(String string, String string2, String string3, String string4, String string5, String string6, String string7, String string8) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
 
 	@Then("Client is not registered")
 	public void client_is_not_registered() {
@@ -73,6 +80,7 @@ public class StepDefinition {
 		searchableobjectlist = new ArrayList<SearchAbleObjects>();
 	    searchableobjectlist.add( new CompanyName(companyname));
 		searchableobjectlist.add( new PersonName(personname));
+		System.out.println(searchableobjectlist);
 	}
 
 
@@ -159,6 +167,54 @@ public class StepDefinition {
 
 
 
+
 //	------------------ END UPDATE CLIENT INFORMATION -------
 
+//	------------------ SEARCH CONTAINER --------------------
+	
+
+
+	@Given("a keyword {string}")
+	public void a_keyword(String string) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("searching for a container")
+	public void searching_for_a_container() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("a container has been found")
+	public void a_container_has_been_found() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+
+	@Then("the keyword does not match any container")
+	public void the_keyword_does_not_match_any_container() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+	
+
+
+	@Given("a database of existing containers port: {string}, port of origin: {string}, destination: {string} content: {string}, company: {string}")
+	public void a_database_of_existing_containers_port_port_of_origin_destination_content_company(String string, String string2, String string3, String string4, String string5) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -3,25 +3,38 @@ package test;
 
 
 
+import java.util.ArrayList;
+
 import backend.database.DatabaseHandler;
 import backend.facade.LogisticCompanyFacade;
+import backend.objects.CompanyAddress;
+import backend.objects.CompanyName;
+import backend.objects.SearchAbleObjects;
 
 
 public class Test {
 	public static void main(String[] args) {
 		
-	System.out.println("testcfjsnlkæb");
 		
-	LogisticCompanyFacade logisticCompany = new	LogisticCompanyFacade();
+		ArrayList<SearchAbleObjects> searchableobjectlist = new ArrayList<SearchAbleObjects>();
+		searchableobjectlist.add(new CompanyName("a"));
+		searchableobjectlist.add(new CompanyAddress("a"));
 		
-	logisticCompany.CreatePort("Oslo");
-	System.out.println(DatabaseHandler.getPortList().getList());
-	
-	logisticCompany.RegisterClient("a", "a", "a", "a");
-	System.out.println(DatabaseHandler.getClientList().getList());
-	
-	System.out.println(logisticCompany.RegisterClient("a", "a", "a", "a"));
-	System.out.println(DatabaseHandler.getClientList().getList());
+		System.out.println(searchableobjectlist);
+		
+		
+//	System.out.println("testcfjsnlkæb");
+//		
+//	LogisticCompanyFacade logisticCompany = new	LogisticCompanyFacade();
+//		
+//	logisticCompany.CreatePort("Oslo");
+//	System.out.println(DatabaseHandler.getPortList().getList());
+//	
+//	logisticCompany.RegisterClient("a", "a", "a", "a");
+//	System.out.println(DatabaseHandler.getClientList().getList());
+//	
+//	System.out.println(logisticCompany.RegisterClient("a", "a", "a", "a"));
+//	System.out.println(DatabaseHandler.getClientList().getList());
 	
 
 	
